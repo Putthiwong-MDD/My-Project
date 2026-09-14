@@ -1,0 +1,98 @@
+<?php 
+session_start(); 
+$name = $_SESSION['name'] ?? 'Admin'; 
+$emp_id = $_SESSION['emp_id'] ?? '-'; 
+?>
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>🏢 Admin Home - ระบบตรวจสอบอาคาร</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', 'Prompt', sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      color: #333;
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+    header {
+      background: linear-gradient(90deg, #2c3e50, #3498db);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      border-bottom: 4px solid #2980b9;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    header h1 { margin: 0; font-size: 28px; }
+    header p { margin-top: 8px; font-size: 16px; }
+    .welcome { text-align: center; margin-top: 20px; font-size: 18px; color: #2c3e50; }
+    main { padding: 2rem; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: auto; }
+    .card {
+      background: white; border-radius: 16px; padding: 1.5rem;
+      text-decoration: none; color: #3498db;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border-top: 6px solid #3498db; position: relative; overflow: hidden;
+    }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.12); }
+    .card h2 { margin-top: 0; font-size: 20px; }
+    .card p { font-size: 15px; margin-bottom: 0; }
+    footer { text-align: center; padding: 1rem; background: #e9ecef; font-size: 0.9rem; margin-top: 40px; }
+    @media (max-width: 768px) { header h1 { font-size: 22px; } .card h2 { font-size: 18px; } .card p { font-size: 14px; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏢 Admin Dashboard</h1>
+  <p>LPP Property Management | Engineer Center Department</p>
+</header>
+
+<div class="welcome"> 
+  👋 สวัสดี Admin: <strong><?= htmlspecialchars($name) ?></strong><br> 
+  🆔 รหัสพนักงาน: <strong><?= htmlspecialchars($emp_id) ?></strong><br>
+  <br> <a href="logout.php" class="btn btn-danger">🚪 ออกจากระบบ</a> 
+</div>
+
+<main>
+  <section class="card-grid">
+    <a href="inspections_summary.php" class="card">
+      <h2>📊 สรุปผลตรวจสอบ</h2>
+      <p>ดูภาพรวมการตรวจสอบทั้งหมด</p>
+    </a>
+    <a href="inspections_question.php" class="card">
+      <h2>📋 สรุปผลรายข้อ</h2>
+      <p>ดูผลรวมตามหัวข้อการตรวจ</p>
+    </a>
+    <a href="inspections_detail.php" class="card">
+      <h2>👤 รายงานรายบุคคล</h2>
+      <p>ดูผลตรวจสอบทีละคน</p>
+    </a>
+    <a href="export_excel_form.php" class="card">
+      <h2>📊 export excel</h2>
+      <p>ส่งออกไฟล์เป็น excel</p>
+    </a>
+    <a href="users.php" class="card">
+      <h2>👥 จัดการผู้ใช้</h2>
+      <p>เพิ่ม/แก้ไข/ลบผู้ใช้งาน</p>
+    </a>
+    <a href="projects.php" class="card">
+      <h2>🏢 จัดการโครงการ</h2>
+      <p>เพิ่ม/แก้ไข/ลบโครงการ</p>
+    </a>
+  </section>
+</main>
+
+<footer>
+  © 2026 LPP Property Management | Engineer Center Department
+</footer>
+
+</body>
+</html>
